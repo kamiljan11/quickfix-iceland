@@ -5,4 +5,4 @@
 Brand + multilingual marketing site (EN / PL / IS) for a Reykjavík handyman service — service pages, before/after gallery, floating WhatsApp contact, deposit-saver landing page. Brand and full sales flow shipped in 72 hours.
 
 ## Source
-Source is **private**. The product is live at [quickfix.is](https://quickfix.is).
+Application source: [`homehug-services`](https://github.com/kamiljan11/homehug-services) — proprietary; access may be restricted. The product is live at [quickfix.is](https://quickfix.is).
