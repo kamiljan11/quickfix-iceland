@@ -1,36 +1,29 @@
 # RUNBOOK — operacje i awarie
 
-<!-- Uzupelnij pola [..] przy wdrozeniu projektu. Ten plik czyta czlowiek o 3 w nocy — zero prozy, same komendy. -->
+Ten repo nie hostuje niczego — jest dokumentacją. "Awaria" tutaj oznacza awarię PRODUKTU
+(`quickfix.is`), nie tego repo. To repo samo w sobie nie może "spaść".
 
 ## Podstawy
-- Produkcja: [URL]
-- Hosting: [gdzie stoi + link do panelu]
-- Repo: github.com/mountainallservice/[repo]
-- Sekrety: Infisical "MAS Group" (localhost:8222) — NIE w repo
+- Produkcja: https://quickfix.is
+- Kod aplikacji: osobne repo [`homehug-services`](https://github.com/kamiljan11/homehug-services) (patrz README → Source)
+- Ten repo: github.com/kamiljan11/quickfix-iceland (tylko dokumentacja)
+- Sekrety: nie dotyczy tego repo (brak kodu, brak env)
 
 ## Deploy
-- Standard: merge do main -> [auto-deploy przez ... / komenda]
-- Reczny: `npm run build` -> [gdzie wrzucic dist]
+Nie dotyczy tego repo. Deploy produktu opisany (jeśli w ogóle) w `homehug-services`.
 
-## Rollback (cel: <5 min)
+## Healthcheck
 ```bash
-git revert <sha-zlego-commita> && git push   # -> redeploy automatyczny
-# albo: przywroc poprzedni release/tag w panelu hostingu
+curl -I https://quickfix.is   # 200 = strona wstaje
 ```
-
-## Monitoring
-- Bledy runtime: Sentry [link do projektu] — alerty ida na mountainallservice@gmail.com
-- Healthcheck: [URL/status] — sprawdz najpierw to
-- CI: zakladka Actions w repo (Quality Gate musi byc zielony)
+Jeśli nie 200: problem jest w `homehug-services` / hostingu tego produktu, nie tutaj.
 
 ## Typowe awarie
 | Objaw | Pierwszy krok |
 |---|---|
-| Strona nie wstaje po deploy | rollback (wyzej), potem debug na branchu |
-| Blad 500 na akcji X | Sentry -> stack trace -> `systematic-debugging` |
-| Wygasly sekret/API key | Infisical -> zrotuj -> redeploy |
-| Domena/DNS | panel ISNIC / rejestratora |
+| `quickfix.is` nie odpowiada | Sprawdz hosting/DNS produktu — poza tym repo. Zacznij od `homehug-services`. |
+| README tego repo mówi co innego niż strona | Zaufaj stronie (zweryfikuj `curl`/przeglądarką), popraw README w PR |
+| Ktoś pyta o kod/logikę biznesową | Nie tutaj — skieruj do `homehug-services`, sprawdź czy ma dostęp |
 
 ## Kontakty
-- Wlasciciel: Kamil Jan, mountainallservice@gmail.com
-- Klient: [imie, kontakt, SLA jesli jest]
+- Właściciel: Kamil Jan, mountainallservice@gmail.com
